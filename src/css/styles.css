@@ -1,0 +1,44 @@
+body {
+  background-color: indigo;
+  color: ghostwhite;
+
+}
+
+h1 {
+  font-family: 'Bungee Spice', cursive;
+  font-size: 64px;
+  text-align: center;
+  margin-top: 5vh;
+}
+
+label {
+  font-family: 'Koulen', cursive;
+  font-size: 24px;
+  text-align: center;
+}
+
+#button {
+  background-color: orange;
+  border-radius: 15%;
+  font-family: 'Koulen', cursive;
+  text-align: center;
+}
+
+form {
+  display: block;
+  text-align: center;
+}
+
+#dinoAlign {
+  float: right;
+  margin: auto;
+  width: "100";
+  height: auto;
+  padding: 20px;
+  text-align: center;
+  object-fit: contain;
+}
+
+#dinoContainer {
+  align-items: center;
+}
