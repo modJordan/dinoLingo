@@ -10,14 +10,16 @@
 <body>
   <div class="container">
     <h1>What does Dino say?</h1>
+    <button type="submit-2" class="btn btn-success" id="api-call">Generate the Dinosaur!</button>
+    <p>Guess the name of the dinosaur in 10 attempts.</p>
     <form>
-      <label for="keyword">Enter your 4 letter guess: </label>
-      <input id="keyword" type="text" name="keyword">
-      <button type="submit" class="btn btn-success" id="">Submit Word</button>
+      <label for="guessInput">Enter a letter or a whole word: </label>
+      <input id="guessInput" type="text" name="guessInput">
+      <button type="submit" class="btn btn-success" id="submit-guess">Submit Guess</button>
     </form>
     <div id="dinoAlign">
-      <div id="dinoContainer"></div>
-      <p id="errorContainer"></p>
+      <p> Remaining Attempts:<span id="attempts"></span></p>
+      <p>Current Word: <span id="maskedWord"></span></p>
     </div>
   </div>
 </body>

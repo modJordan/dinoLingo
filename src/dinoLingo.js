@@ -2,7 +2,7 @@ export default class DinoLingo {
   static getDino(dinoLore) {
     return new Promise(function (resolve, reject) {
       let request = new XMLHttpRequest();
-      const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.API_KEY}`;
+      const url = `https://dinoipsum.com/api/?format=json&paragraphs=3&words=15`;
       request.addEventListener("loadend", function () {
         const response = JSON.parse(this.responseText);
         if (this.status === 200) {
@@ -13,6 +13,11 @@ export default class DinoLingo {
       });
       request.open("GET", url, true);
       request.send();
+    });
+    promise.then(function (dinoDataArray) {
+      printElements(dinoDataArray);
+    }, function (errorArray) {
+      printError(errorArray);
     });
   }
 }

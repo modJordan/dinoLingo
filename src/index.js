@@ -6,34 +6,70 @@ import DinoLingo from './dinoLingo.js';
 
 // Business Logic
 
-function getDino(dinoLore) {
-  let promise = new Promise(function (resolve, reject) {
-    let request = new XMLHttpRequest();
-    const url = `https://dinoipsum.com/api/?format=json&paragraphs=3&words=15`;
+// function getDino(dinoLore) {
+//   let promise = new Promise(function (resolve, reject) {
+//     let request = new XMLHttpRequest();
+//     const url = `https://dinoipsum.com/api/?format=json&paragraphs=3&words=15`;
 
-    request.addEventListener("loadend", function () {
-      const response = JSON.parse(this.responseText);
-      if (this.status === 200) {
-        resolve([response, dinoLore]);
+//     request.addEventListener("loadend", function () {
+//       const response = JSON.parse(this.responseText);
+//       if (this.status === 200) {
+//         resolve([response, dinoLore]);
+//       } else {
+//         reject([this, response, dinoLore]);
+//       }
+//     });
+//     request.open("GET", url, true);
+//     request.send();
+//   });
+
+//   promise.then(function (dinoDataArray) {
+//     printElements(dinoDataArray);
+//   }, function (errorArray) {
+//     printError(errorArray);
+//   });
+// }
+
+function fetchRandomDinoName() {
+  return fetch(`https://dinoipsum.com/api/?format=json&paragraphs=3&words=15`)
+    .then(response => response.json())
+    .then(data => data[0].trim().toLowerCase());
+}
+
+function maskDinosaurName(dinoName, guessedLetters) {
+  let maskedName = "";
+  for (const letter of dinoName) {
+    if (guessedLetters.has(letter)) {
+      maskedName += letter;
+    } else {
+      if (letter.match(/[a-z]/i)) {
+        maskedName += "_";
       } else {
-        reject([this, response, dinoLore]);
+        maskedName += letter;
       }
-    });
-    request.open("GET", url, true);
-    request.send();
-  });
-
-  promise.then(function (dinoDataArray) {
-    printElements(dinoDataArray);
-  }, function (errorArray) {
-    printError(errorArray);
-  });
+    }
+  }
+  return maskedName;
 }
 
-function keywordMatch(dinoLore) {
+class PlayGame {
 
-  return console.log(dinoLore);
+  constructor(dinoName, guessedLetters) {
+    this.dinoName = dinoName;
+    this.guessedLetters = guessedLetters;
+    this.attempts = 0;
+  }
+
+  attemptsCounter() {
+    const attemptsCatch = document.getElementById("attempts");
+    const maskedWordCatch = document.getElementById("maskedWord");
+    const guessInput = document.getElementById("guessInput");
+    for (let i = 0; i < attempts.length(10); i++) {
+      return attempts++;
+    }
+  }
 }
+
 // UI Logic
 
 function displayDino(dinoLore) {
@@ -56,8 +92,7 @@ function handleFormSubmission(event) {
   event.preventDefault();
   const dinoLore = document.querySelector('#keyword').value;
   document.querySelector('#keyword').value = null;
-  getDino(dinoLore);
-  keywordMatch();
+  DinoLingo.dinoLore;
   displayDino(dinoLore);
 }
 
